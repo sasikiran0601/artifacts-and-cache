@@ -1,23 +1,20 @@
-name: composite
-description: Calculator to composite action
+name: ContainerAction
+description: Calculator to test the container action
 inputs:
-  number1:
-    required: true
+  number1: 
     default: 0
+    required: true
   number2:
-    required: true
     default: 0
+    required: true
 outputs:
   result:
-    value: ${{steps.sum-result.outputs.result}}
+    description: 'output of the sum of 2 numbers'
+    
 runs:
-  using: composite
-  steps:
-    - shell: bash
-      id: sum-result
-      run: |
-        num1=${{inputs.number1}}
-        num2=${{inputs.number2}}
-        result=$((num1+num2))
-        echo "result=$result" > "$GITHUB_OUTPUT"
-  
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{inputs.number1}}
+    - ${{inputs.number2}}
+    
