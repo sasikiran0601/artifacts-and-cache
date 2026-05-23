@@ -2,7 +2,7 @@ name: Python CI with Cache
 
 on:
   push:
-    branches: [main]
+    branches: [meta_data]
 
 jobs:
   build:
