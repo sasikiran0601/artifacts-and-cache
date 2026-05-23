@@ -1,0 +1,21 @@
+name: dockerAction
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  docker-action:
+    name: description of docker in action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: chmod +x entrypoint.sh
+      - uses: ./
+        id: dockerAction
+        with:
+          number1: 1
+          number2: 20
+      - run: echo ${{steps.dockerAction.outputs.result}}
+      - run: cat $GITHUB_WORKSPACE/containerOutputFile.txt
+      - run: cat ${{github.workspace}}/containerOutputFile.txt
