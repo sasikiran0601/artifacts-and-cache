@@ -2,6 +2,7 @@ name: composite actions test
 
 on:
   push:
+    branches: [meta_data]
 
 jobs:
   composite-action:
